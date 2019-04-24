@@ -1,13 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     tools:context=".AddToListActivity">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+    <include layout="@layout/shoppingbar"
+    android:id="@+id/addBar"
+        />
 
-</LinearLayout>
+    
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1.0"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/addBar">
+            <RelativeLayout
+                android:layout_width="0dip"
+                android:layout_weight="0.2"
+                android:layout_height="match_parent"></RelativeLayout>
+            <RelativeLayout
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="0.6"
+                android:layout_marginTop="100dp"
+                >
+                <EditText
+                    android:id="@+id/nameEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dp"
+                    android:hint="Name of product"
+                    android:textSize="20dp"
+                    android:textAlignment="center"
+                    />
+                <EditText
+                    android:id="@+id/amountEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/nameEdit"
+                    android:hint="web page of image"
+                    android:textSize="15dp"
+                    android:textAlignment="center"/>
+                <EditText
+                    android:id="@+id/webEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/amountEdit"
+                    android:hint="web page of image"
+                    android:textSize="10dp"
+                    android:textAlignment="center"/>
+
+                <Button
+                    android:id="@+id/saveButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="30dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_below="@+id/webEdit"
+                    android:background="@color/colorPrimary"
+                    android:textColor="#fff"
+                    android:text="Add"/>
+            </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_weight="0.2"
+            android:layout_height="match_parent"></RelativeLayout>
+    </LinearLayout>
+
+
+
+
+</android.support.constraint.ConstraintLayout>

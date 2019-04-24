@@ -1,5 +1,6 @@
 package com.jonatan_vahlberg.shoppinglist;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -30,9 +31,9 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                RecyclerView rV = findViewById(R.id.recyclerView);
-                rV.getAdapter().notifyDataSetChanged();
+                Intent intent = new Intent(getApplicationContext(),AddToListActivity.class);
+                startActivity(intent);
+                //
             }
         });
         realm = Realm.getDefaultInstance();
@@ -49,5 +50,10 @@ public class MainActivity extends AppCompatActivity {
         rV.setLayoutManager(new LinearLayoutManager(this));
     }
 
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        RecyclerView rV = findViewById(R.id.recyclerView);
+        rV.getAdapter().notifyDataSetChanged();
+    }
 }
