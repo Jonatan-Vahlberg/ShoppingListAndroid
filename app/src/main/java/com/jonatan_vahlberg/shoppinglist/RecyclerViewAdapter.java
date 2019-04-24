@@ -20,8 +20,8 @@ import io.realm.RealmResults;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
     private Context mContext;
-    RealmResults<Product> mList;
-    Realm realm;
+    private RealmResults<Product> mList;
+    private Realm realm;
 
     public RecyclerViewAdapter(Context context, RealmResults<Product> list){
         mContext = context;
@@ -39,25 +39,44 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull final ViewHolder viewHolder, int i) {
 
         Glide.with(mContext)
                 .asBitmap()
                 .load(mList.get(i).getImage())
                 .into(viewHolder.image);
         viewHolder.name.setText(mList.get(i).getName());
+        if (mList.get(i).isChecked()){
+
+            viewHolder.check.setText("✔️");
+            viewHolder.check.setBackgroundColor(Color.parseColor("#9fd7fb"));
+        }
+        else{
+            viewHolder.check.setText("️❌");
+            viewHolder.check.setBackgroundColor(Color.WHITE);
+        }
+
+
+        final int index = i;
         viewHolder.check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Button button = (Button) v;
-                if(button.getText().equals("✔️")){
+                realm.beginTransaction();
+                if(mList.get(index).isChecked()){
+
+                    mList.get(index).setChecked(false);
                     button.setText("️❌");
                     button.setBackgroundColor(Color.WHITE);
                 }
                 else{
+                    mList.get(index).setChecked(true);
                     button.setText("✔️");
                     button.setBackgroundColor(Color.parseColor("#9fd7fb"));
                 }
+                realm.commitTransaction();
+
+
 
 
             }

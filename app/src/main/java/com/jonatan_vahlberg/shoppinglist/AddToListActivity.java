@@ -1,23 +1,30 @@
 package com.jonatan_vahlberg.shoppinglist;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import java.net.URL;
 
 import io.realm.Realm;
-
+/**Activity used for adding new product to Realm*/
 public class AddToListActivity extends AppCompatActivity {
+
+    //Private Properties
     private EditText nameEdit,amountEdit,webEdit;
     private Button saveButton, returnButton;
     private Realm realm;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_to_list);
+
+        //Getting Layout Elements
         nameEdit = findViewById(R.id.nameEdit);
         amountEdit = findViewById(R.id.amountEdit);
         webEdit = findViewById(R.id.webEdit);
@@ -26,8 +33,11 @@ public class AddToListActivity extends AppCompatActivity {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                save_into_realm(nameEdit.getText().toString(),webEdit.getText().toString(),Integer.parseInt(amountEdit.getText().toString()));
-                returnToMain();
+                if (dataIsPassable()) {
+                    save_into_realm(nameEdit.getText().toString(), webEdit.getText().toString(), Integer.parseInt(amountEdit.getText().toString()));
+
+                    returnToMain();
+                }
             }
         });
 
@@ -49,10 +59,11 @@ public class AddToListActivity extends AppCompatActivity {
         realm.executeTransactionAsync(new Realm.Transaction() {
             @Override
             public void execute(Realm bgRealm) {
-                Product user = bgRealm.createObject(Product.class);
-                user.setName(name);
-                user.setAmount(amount);
-                user.setImage(image);
+                Product product = bgRealm.createObject(Product.class);
+                product.setName(name);
+                product.setAmount(amount);
+                product.setImage(image);
+                product.setChecked(false);
             }
         }, new Realm.Transaction.OnSuccess() {
             @Override
@@ -75,5 +86,48 @@ public class AddToListActivity extends AppCompatActivity {
         finish();
         //Intent intent = new Intent(getApplicationContext(),MainActivity.class);
         //startActivity(intent);
+    }
+
+    private boolean dataIsPassable(){
+        if(
+                (nameEdit.getText().toString().equals("")) ||
+                (amountEdit.getText().toString().equals("")) ||
+                (webEdit.getText().toString().equals(""))){
+
+            Toast.makeText(this," Fields Needs to be filled in",Toast.LENGTH_SHORT).show();
+            return  false;
+        }
+        else if(!(dataIsParseable(amountEdit.getText().toString()))){
+            Toast.makeText(this,"Amount Needs to be a whole number",Toast.LENGTH_SHORT).show();
+            return  false;
+        }
+        else if(!(dataIsURL())){
+            Toast.makeText(this,"Web Page can't be created from Text Field",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        else{
+            return true;
+        }
+
+    }
+
+    private boolean dataIsParseable(String  number){
+        try{
+            Integer.parseInt(number);
+
+        }catch (Exception e){
+            return false;
+        }
+        return true;
+
+    }
+
+    private boolean dataIsURL(){
+        try{
+            URL url = new URL(webEdit.getText().toString());
+        }catch (Exception e){
+            return  false;
+        }
+        return  true;
     }
 }

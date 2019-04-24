@@ -10,8 +10,12 @@ public class BaseApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        //Initialize Realm
         Realm.init(this);
-        RealmConfiguration  configuration = new RealmConfiguration.Builder().name("ShoppingRealm").build();
+
+        //Set Realm File Config
+        RealmConfiguration  configuration = new RealmConfiguration.Builder().name("shoplistrealm").build();
         Realm.setDefaultConfiguration(configuration);
     }
 }
