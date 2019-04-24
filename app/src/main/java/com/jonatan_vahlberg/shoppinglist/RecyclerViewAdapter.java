@@ -13,17 +13,21 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
-import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import io.realm.Realm;
+import io.realm.RealmResults;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
     private Context mContext;
-    ArrayList<ListObj> mList = new ArrayList<>();
+    RealmResults<Product> mList;
+    Realm realm;
 
-    public RecyclerViewAdapter(Context context, ArrayList<ListObj> list){
+    public RecyclerViewAdapter(Context context, RealmResults<Product> list){
         mContext = context;
         this.mList = list;
+        realm = Realm.getDefaultInstance();
+        this.mList = realm.where(Product.class).findAll();
     }
 
     @NonNull
@@ -39,9 +43,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         Glide.with(mContext)
                 .asBitmap()
-                .load(mList.get(i).image)
+                .load(mList.get(i).getImage())
                 .into(viewHolder.image);
-        viewHolder.name.setText(mList.get(i).name);
+        viewHolder.name.setText(mList.get(i).getName());
         viewHolder.check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
