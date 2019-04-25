@@ -37,19 +37,32 @@
                     android:textSize="20dp"
                     android:textAlignment="center"
                     />
-                <EditText
-                    android:id="@+id/amountEdit"
+                <LinearLayout
+                    android:id="@+id/amount_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/nameEdit"
-                    android:hint="web page of image"
-                    android:textSize="15dp"
-                    android:textAlignment="center"/>
+                    android:layout_below="@+id/nameEdit">
+                    <EditText
+                        android:layout_weight="0.7"
+                        android:id="@+id/amountEdit"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+
+                        android:hint="Amount"
+                        android:textSize="15dp"
+                        android:textAlignment="center"/>
+                    <Spinner
+                        android:id="@+id/amount_spinner"
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.3"/>
+                </LinearLayout>
+
                 <EditText
                     android:id="@+id/webEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/amountEdit"
+                    android:layout_below="@+id/amount_layout"
                     android:hint="web page of image"
                     android:textSize="10dp"
                     android:textAlignment="center"/>

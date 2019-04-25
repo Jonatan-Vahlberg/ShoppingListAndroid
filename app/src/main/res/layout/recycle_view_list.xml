@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:baselineAligned="true">
+    <RelativeLayout
+        android:layout_width="0dip"
+        android:layout_height="match_parent"
+        android:layout_weight="0.6"
+        android:paddingStart="10dp">
+        <TextView
+            android:id="@+id/list_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="list 1"
+            android:textSize="30sp"
+            android:textColor="#000"/>
+        <TextView
+            android:id="@+id/list_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Friday, 26 April 2019"
+            android:textSize="20sp"
+            android:layout_below="@+id/list_title"
+            />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="0dip"
+        android:layout_height="match_parent"
+        android:layout_weight="0.4">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true">
+
+            <Button
+                android:id="@+id/list_edit"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:background="@color/colorPrimary"
+                android:layout_marginRight="10dp"
+                android:textColor="#ffffff"
+                android:text="Edit"/>
+            <Button
+                android:id="@+id/list_delete"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:layout_toEndOf="@+id/list_edit"
+                android:layout_centerVertical="true"
+                android:background="#8b0000"
+                android:textColor="#ffffff"
+                android:text="X"
+                android:textSize="30dp"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

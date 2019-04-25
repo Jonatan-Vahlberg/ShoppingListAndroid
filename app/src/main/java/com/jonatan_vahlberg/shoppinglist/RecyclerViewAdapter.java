@@ -75,10 +75,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     button.setBackgroundColor(Color.parseColor("#9fd7fb"));
                 }
                 realm.commitTransaction();
+            }
+        });
+        viewHolder.check.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                realm = Realm.getDefaultInstance();
 
-
-
-
+                realm.beginTransaction();
+                mList.deleteFromRealm(index);
+                realm.commitTransaction();
+                return true;
             }
         });
     }

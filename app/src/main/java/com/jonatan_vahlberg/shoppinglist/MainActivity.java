@@ -24,7 +24,8 @@ public class MainActivity extends AppCompatActivity {
     private RealmChangeListener mChangeListener = new RealmChangeListener() {
         @Override
         public void onChange(Object o) {
-            onResume();
+            RecyclerView rV = findViewById(R.id.recyclerView);
+            rV.getAdapter().notifyDataSetChanged();
             Log.d("onChange", "onChange: ");
         }
     };
@@ -54,11 +55,10 @@ public class MainActivity extends AppCompatActivity {
         //Set Realm object Type for the RealmResults
         mList = realm.where(Product.class).findAll();
 
+        realm.addChangeListener(mChangeListener);
+
         //Init RecyclerView Adapter and View
         initRecyclerView();
-
-
-
     }
 
     private void initRecyclerView(){
