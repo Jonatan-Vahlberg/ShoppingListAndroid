@@ -20,9 +20,9 @@ import io.realm.RealmResults;
 
 public class MainActivity extends AppCompatActivity {
     static Realm realm;
-    private ShoppingList mList2;
+    private ShoppingList mList;
     private long mId;
-    RealmResults<Product> mList;
+
 
     private RealmChangeListener mChangeListener = new RealmChangeListener() {
         @Override
@@ -40,17 +40,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         //Get Realm file and Configuration Init in BaseApplication
         realm = Realm.getDefaultInstance();
-        //Set Realm object Type for the RealmResults
-        mList = realm.where(Product.class).findAll();
 
-        realm.addChangeListener(mChangeListener);
+
         //Get Included ToolBar button
         View view = findViewById(R.id.toolbarRelative);
         if(getIntent().hasExtra("id")){
             mId = getIntent().getLongExtra("id",0);
-            mList2 = realm.where(ShoppingList.class).equalTo("id",mId).findFirst();
+            mList = realm.where(ShoppingList.class).equalTo("id",mId).findFirst();
             TextView textView = view.findViewById(R.id.toolbar_relative_text);
-            textView.setText(mList2.getName());
+            textView.setText(mList.getName());
+            mList.addChangeListener(mChangeListener);
+            Log.d("Database", mId + "");
         }
         Button button = view.findViewById(R.id.addButton);
 
@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),AddToListActivity.class);
+                intent.putExtra("id",mId);
                 startActivity(intent);
                 //
             }
@@ -75,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView rV = findViewById(R.id.recyclerView);
 
         //Create New Adapter Based on RecyclerViewAdapter
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this,this.mList);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this,this.mList.getListOfItems());
         //Set Adapter
         rV.setAdapter(adapter);
 

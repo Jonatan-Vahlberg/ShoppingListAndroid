@@ -16,18 +16,19 @@ import com.bumptech.glide.Glide;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import io.realm.Realm;
+import io.realm.RealmList;
 import io.realm.RealmResults;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
     private Context mContext;
-    private RealmResults<Product> mList;
+    private RealmList<ShoppingItem> mList;
     private Realm realm;
 
-    public RecyclerViewAdapter(Context context, RealmResults<Product> list){
+    public RecyclerViewAdapter(Context context, RealmList<ShoppingItem> list){
         mContext = context;
         this.mList = list;
         realm = Realm.getDefaultInstance();
-        this.mList = realm.where(Product.class).findAll();
+        //this.mList = realm.where(ShoppingItem.class).findAll();
     }
 
     @NonNull
@@ -88,6 +89,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 return true;
             }
         });
+        viewHolder.amount.setText(mList.get(i).getAmount()+mList.get(i).getAmountType());
     }
 
     @Override
@@ -101,6 +103,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         TextView name;
         Button check;
         RelativeLayout relativeLayout;
+        TextView amount;
 
         public ViewHolder(View itemView){
             super(itemView);
@@ -108,6 +111,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             this.name = itemView.findViewById(R.id.name);
             this.check = itemView.findViewById(R.id.check);
             this.relativeLayout = itemView.findViewById(R.id.parent_layout);
+            this.amount = itemView.findViewById(R.id.amount);
 
         }
     }

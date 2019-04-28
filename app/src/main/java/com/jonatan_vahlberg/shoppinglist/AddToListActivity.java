@@ -13,13 +13,14 @@ import android.widget.Toast;
 import java.net.URL;
 
 import io.realm.Realm;
-/**Activity used for adding new product to Realm*/
+/**Activity used for adding new shoppingItem to Realm*/
 public class AddToListActivity extends AppCompatActivity {
 
     //Private Properties
     private EditText nameEdit,amountEdit,webEdit;
     private Button saveButton, returnButton;
     private Realm realm;
+    private long  mId;
     private Spinner spinner;
     private String[] spinnerValues = {"Pieces","Kg","L","Grams"};
 
@@ -58,18 +59,26 @@ public class AddToListActivity extends AppCompatActivity {
         });
 
         realm = Realm.getDefaultInstance();
+        if(getIntent().hasExtra("id")){
+            mId = getIntent().getLongExtra("id",0);
+        }
     }
 
 
     private void save_into_realm(final String name, final  String image, final int amount){
+        if (mId == 0){
+            return;
+        }
         realm.executeTransactionAsync(new Realm.Transaction() {
             @Override
             public void execute(Realm bgRealm) {
-                Product product = bgRealm.createObject(Product.class);
-                product.setName(name);
-                product.setAmount(amount);
-                product.setImage(image);
-                product.setChecked(false);
+                ShoppingItem shoppingItem = bgRealm.createObject(ShoppingItem.class);
+                shoppingItem.setName(name);
+                shoppingItem.setAmount(amount);
+                shoppingItem.setImage(image);
+                shoppingItem.setChecked(false);
+                shoppingItem.setAmountType(spinner.getSelectedItem().toString());
+                bgRealm.where(ShoppingList.class).equalTo("id",mId).findFirst().getListOfItems().add(shoppingItem);
             }
         }, new Realm.Transaction.OnSuccess() {
             @Override

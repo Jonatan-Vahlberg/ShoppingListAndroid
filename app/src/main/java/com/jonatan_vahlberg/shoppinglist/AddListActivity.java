@@ -85,18 +85,20 @@ public class AddListActivity extends AppCompatActivity {
                 int month = datePicker.getMonth() + 1;
                 int year = datePicker.getYear();
 
-                String dateString = intToDateString(day);
-                dateString += intToDateString(month);
-                dateString += intToDateString(year);
+                String dateString = intToDateString(day,true);
+
+                dateString += intToDateString(month,false);
+                dateString += intToDateString(year,false);
                 mDateString = dateString;
             }
 
-            private String intToDateString(int num) {
-                if(num <= 9){
-                    return  "/0"+num;
+            private String intToDateString(int num, boolean first) {
+                if(first){
+                    if(num <= 9) return  "0"+num;
+                    else return ""+num;
                 }
-                else
-                    return "/"+num;
+                if(num <= 9) return  "/0"+num;
+                else return "/"+num;
             }
         });
     }
