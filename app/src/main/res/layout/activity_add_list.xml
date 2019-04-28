@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddListActivity">
+
+    <include layout="@layout/shoppingbar"
+        android:id="@+id/shoppingBar"
+        />
+    <LinearLayout
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+        android:weightSum="1.0"
+        app:layout_constraintTop_toBottomOf="@+id/shoppingBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:orientation="horizontal"
+        >
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="0.1"/>
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="0.8"
+            android:layout_marginTop="50dp">
+            <EditText
+                android:id="@+id/add_list_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="List Name"
+                android:textSize="25dp"/>
+            <TextView
+                android:id="@+id/date_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="What Date Should You Be Reminded Of Your List?"
+                android:layout_below="@id/add_list_name"
+                />
+            <DatePicker
+                android:id="@+id/date_date"
+                android:layout_below="@+id/date_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:datePickerMode="spinner"
+                android:scaleX="0.75"
+                android:scaleY="0.75"
+                >
+
+            </DatePicker>
+            <Button
+                android:id="@+id/list_add_btn"
+                android:layout_below="@+id/date_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:background="@color/app_blue"
+                android:textColor="#fff"
+                android:text="ADD"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="0.1"/>
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

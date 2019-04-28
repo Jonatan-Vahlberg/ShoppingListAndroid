@@ -20,12 +20,12 @@
         app:layout_constraintTop_toBottomOf="@+id/addBar">
             <RelativeLayout
                 android:layout_width="0dip"
-                android:layout_weight="0.2"
+                android:layout_weight="0.15"
                 android:layout_height="match_parent"></RelativeLayout>
             <RelativeLayout
                 android:layout_width="0dip"
                 android:layout_height="match_parent"
-                android:layout_weight="0.6"
+                android:layout_weight="0.7"
                 android:layout_marginTop="100dp"
                 >
                 <EditText
@@ -35,7 +35,8 @@
                     android:layout_marginTop="50dp"
                     android:hint="Name of product"
                     android:textSize="20dp"
-                    android:textAlignment="center"
+                    android:importantForAutofill="no"
+
                     />
                 <LinearLayout
                     android:id="@+id/amount_layout"
@@ -43,19 +44,18 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/nameEdit">
                     <EditText
-                        android:layout_weight="0.7"
+                        android:layout_weight="0.5"
                         android:id="@+id/amountEdit"
                         android:layout_width="0dip"
                         android:layout_height="wrap_content"
 
                         android:hint="Amount"
-                        android:textSize="15dp"
-                        android:textAlignment="center"/>
+                        android:textSize="15dp"/>
                     <Spinner
                         android:id="@+id/amount_spinner"
                         android:layout_width="0dip"
                         android:layout_height="match_parent"
-                        android:layout_weight="0.3"/>
+                        android:layout_weight="0.5"/>
                 </LinearLayout>
 
                 <EditText
@@ -63,9 +63,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/amount_layout"
-                    android:hint="web page of image"
-                    android:textSize="10dp"
-                    android:textAlignment="center"/>
+                    android:hint="web page of image (optional)"
+                    android:textSize="10dp"/>
 
                 <Button
                     android:id="@+id/saveButton"
@@ -74,7 +73,7 @@
                     android:textSize="30dp"
                     android:layout_marginTop="50dp"
                     android:layout_below="@+id/webEdit"
-                    android:background="@color/colorPrimary"
+                    android:background="@color/app_blue"
                     android:textColor="#fff"
                     android:text="Add"/>
             </RelativeLayout>
@@ -82,7 +81,7 @@
 
         <RelativeLayout
             android:layout_width="0dip"
-            android:layout_weight="0.2"
+            android:layout_weight="0.15"
             android:layout_height="match_parent"></RelativeLayout>
     </LinearLayout>
 

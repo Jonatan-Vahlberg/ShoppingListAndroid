@@ -3,7 +3,7 @@
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorPrimary"
+    android:background="@color/app_blue"
     android:elevation="40dp"
     >
 
@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TextView
+            android:id="@+id/toolbar_relative_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Shopping List"
@@ -23,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:background="@color/colorPrimary"
+            android:background="@color/app_blue"
             android:text="Add Entry"
             android:textColor="#fff"
             android:layout_marginRight="20dp"

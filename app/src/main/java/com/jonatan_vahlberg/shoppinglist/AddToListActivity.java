@@ -4,8 +4,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.net.URL;
@@ -18,17 +20,21 @@ public class AddToListActivity extends AppCompatActivity {
     private EditText nameEdit,amountEdit,webEdit;
     private Button saveButton, returnButton;
     private Realm realm;
+    private Spinner spinner;
+    private String[] spinnerValues = {"Pieces","Kg","L","Grams"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_to_list);
 
+
         //Getting Layout Elements
         nameEdit = findViewById(R.id.nameEdit);
         amountEdit = findViewById(R.id.amountEdit);
         webEdit = findViewById(R.id.webEdit);
-
+        spinner = findViewById(R.id.amount_spinner);
+        setSpinnerValue();
         saveButton = findViewById(R.id.saveButton);
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,14 +75,14 @@ public class AddToListActivity extends AppCompatActivity {
             @Override
             public void onSuccess() {
                 // Transaction was a success.
-                Log.d("Database","USER WAS ENTERED");
+                Log.d("Database","Item WAS ENTERED");
                 //updateResults();
             }
         }, new Realm.Transaction.OnError() {
             @Override
             public void onError(Throwable error) {
                 // Transaction failed and was automatically canceled.
-                Log.d("Database","USER WAS NOT ENTERED");
+                Log.d("Database","Item WAS NOT ENTERED");
             }
         });
 
@@ -91,8 +97,7 @@ public class AddToListActivity extends AppCompatActivity {
     private boolean dataIsPassable(){
         if(
                 (nameEdit.getText().toString().equals("")) ||
-                (amountEdit.getText().toString().equals("")) ||
-                (webEdit.getText().toString().equals(""))){
+                (amountEdit.getText().toString().equals(""))){
 
             Toast.makeText(this," Fields Needs to be filled in",Toast.LENGTH_SHORT).show();
             return  false;
@@ -102,8 +107,8 @@ public class AddToListActivity extends AppCompatActivity {
             return  false;
         }
         else if(!(dataIsURL())){
-            Toast.makeText(this,"Web Page can't be created from Text Field",Toast.LENGTH_SHORT).show();
-            return false;
+            Toast.makeText(this,"Web Page image can't be created from Text Field",Toast.LENGTH_SHORT).show();
+            return true;
         }
         else{
             return true;
@@ -129,5 +134,11 @@ public class AddToListActivity extends AppCompatActivity {
             return  false;
         }
         return  true;
+    }
+
+    private void setSpinnerValue(){
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,spinnerValues);
+        spinner.setAdapter(adapter);
+
     }
 }

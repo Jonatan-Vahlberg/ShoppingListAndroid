@@ -1,6 +1,8 @@
 package com.jonatan_vahlberg.shoppinglist;
 
 import io.realm.RealmObject;
+import io.realm.RealmResults;
+import io.realm.annotations.LinkingObjects;
 
 public class ShoppingItem extends RealmObject {
 
@@ -10,6 +12,9 @@ public class ShoppingItem extends RealmObject {
     private String image;
     private String amountType;
     private boolean  checked = false;
+
+    @LinkingObjects("listOfItems")
+    private final RealmResults<ShoppingList> itemParents = null;
 
     //Getters And Setters
     public String getName() {
@@ -41,6 +46,10 @@ public class ShoppingItem extends RealmObject {
     public boolean isChecked() { return checked; }
 
     public void setChecked(boolean checked) { this.checked = checked; }
+
+    public RealmResults<ShoppingList> getItemParents(){
+        return itemParents;
+    }
 
     public ShoppingItem(String name,int amount, String image){
         this.name = name;

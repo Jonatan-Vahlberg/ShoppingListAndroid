@@ -5,77 +5,45 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import io.realm.Realm;
 import io.realm.RealmChangeListener;
 import io.realm.RealmResults;
 
-public class MainActivity extends AppCompatActivity {
-    static Realm realm;
-    private ShoppingList mList2;
-    private long mId;
-    RealmResults<Product> mList;
+public class ListsActivity extends AppCompatActivity {
+
+    private Realm mRealm;
+    private RealmResults<ShoppingList> mResults;
 
     private RealmChangeListener mChangeListener = new RealmChangeListener() {
         @Override
         public void onChange(Object o) {
-            RecyclerView rV = findViewById(R.id.recyclerView);
+            RecyclerView rV = findViewById(R.id.recyclerListView);
             rV.getAdapter().notifyDataSetChanged();
             Log.d("onChange", "onChange: ");
         }
     };
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        //Get Realm file and Configuration Init in BaseApplication
-        realm = Realm.getDefaultInstance();
-        //Set Realm object Type for the RealmResults
-        mList = realm.where(Product.class).findAll();
+        setContentView(R.layout.activity_lists);
 
-        realm.addChangeListener(mChangeListener);
-        //Get Included ToolBar button
-        View view = findViewById(R.id.toolbarRelative);
-        if(getIntent().hasExtra("id")){
-            mId = getIntent().getLongExtra("id",0);
-            mList2 = realm.where(ShoppingList.class).equalTo("id",mId).findFirst();
-            TextView textView = view.findViewById(R.id.toolbar_relative_text);
-            textView.setText(mList2.getName());
-        }
-        Button button = view.findViewById(R.id.addButton);
-
-        //Set Onclick Listener
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),AddToListActivity.class);
-                startActivity(intent);
-                //
-            }
-        });
-
-
-
+        layoutSetup();
+        realmSetup();
         //Init RecyclerView Adapter and View
         initRecyclerView();
     }
 
-    private void initRecyclerView(){
-
-        RecyclerView rV = findViewById(R.id.recyclerView);
+    private void initRecyclerView() {
+        RecyclerView rV = findViewById(R.id.recyclerListView);
 
         //Create New Adapter Based on RecyclerViewAdapter
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this,this.mList);
+        RecyclerViewListAdapter adapter = new RecyclerViewListAdapter(this,this.mResults);
         //Set Adapter
         rV.setAdapter(adapter);
 
@@ -83,15 +51,39 @@ public class MainActivity extends AppCompatActivity {
         rV.setLayoutManager(new LinearLayoutManager(this));
     }
 
+    private void realmSetup(){
 
-    //When Returning To MainActivity
+        //Get Realm file and Configuration Init in BaseApplication
+        mRealm = Realm.getDefaultInstance();
+        //Set Realm object Type for the RealmResults
+        mResults = mRealm.where(ShoppingList.class).findAll();
+        Log.d("onChange", "realmSetup: "+mResults.size());
+        mRealm.addChangeListener(mChangeListener);
+    }
+
+    private void layoutSetup(){
+        //Get Included ToolBar button
+        View view = findViewById(R.id.toolbarRelative);
+        TextView tV = view.findViewById(R.id.toolbar_relative_text);
+        tV.setText("Shopping Lists");
+        Button button = view.findViewById(R.id.addButton);
+        button.setText("Add list");
+        //Set Onclick Listener
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),AddListActivity.class);
+                startActivity(intent);
+                //
+            }
+        });
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
         //Get New Items or update old ones
-        RecyclerView rV = findViewById(R.id.recyclerView);
+        RecyclerView rV = findViewById(R.id.recyclerListView);
         rV.getAdapter().notifyDataSetChanged();
     }
-
-
 }

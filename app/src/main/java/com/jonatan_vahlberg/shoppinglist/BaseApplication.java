@@ -15,7 +15,7 @@ public class BaseApplication extends Application {
         Realm.init(this);
 
         //Set Realm File Config
-        RealmConfiguration  configuration = new RealmConfiguration.Builder().name("shoplistrealm").build();
+        RealmConfiguration  configuration = new RealmConfiguration.Builder().name("realm_v103").build();
         Realm.setDefaultConfiguration(configuration);
     }
 }

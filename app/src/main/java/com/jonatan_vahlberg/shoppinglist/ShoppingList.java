@@ -1,9 +1,10 @@
 package com.jonatan_vahlberg.shoppinglist;
 
 import io.realm.RealmList;
+import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
-public class ShoppingList {
+public class ShoppingList extends RealmObject {
 
     //Primary key when searching Realm Database
     @PrimaryKey
