@@ -103,6 +103,7 @@ public class AddToListActivity extends AppCompatActivity {
         //startActivity(intent);
     }
 
+    //does data entered conform to required forms
     private boolean dataIsPassable(){
         if(
                 (nameEdit.getText().toString().equals("")) ||
