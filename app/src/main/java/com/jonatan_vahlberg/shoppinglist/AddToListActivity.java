@@ -103,6 +103,7 @@ public class AddToListActivity extends AppCompatActivity {
         //startActivity(intent);
     }
 
+    //does data entered conform to required forms
     private boolean dataIsPassable(){
         if(
                 (nameEdit.getText().toString().equals("")) ||
@@ -115,9 +116,12 @@ public class AddToListActivity extends AppCompatActivity {
             Toast.makeText(this,"Amount Needs to be a whole number",Toast.LENGTH_SHORT).show();
             return  false;
         }
+        else if(webEdit.getText().toString().equals("")){
+            return true;
+        }
         else if(!(dataIsURL())){
             Toast.makeText(this,"Web Page image can't be created from Text Field",Toast.LENGTH_SHORT).show();
-            return true;
+            return false;
         }
         else{
             return true;
