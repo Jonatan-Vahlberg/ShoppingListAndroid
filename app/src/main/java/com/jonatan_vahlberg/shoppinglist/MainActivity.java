@@ -1,22 +1,25 @@
 package com.jonatan_vahlberg.shoppinglist;
 
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.content.Intent;
+import android.os.Build;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import io.realm.Realm;
 import io.realm.RealmChangeListener;
-import io.realm.RealmResults;
+
+import static com.jonatan_vahlberg.shoppinglist.BaseApplication.CHANNEL_1_ID;
 
 public class MainActivity extends AppCompatActivity {
     static Realm realm;
@@ -38,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         //Get Realm file and Configuration Init in BaseApplication
         realm = Realm.getDefaultInstance();
 
@@ -58,10 +62,11 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 Intent intent = new Intent(getApplicationContext(),AddToListActivity.class);
                 intent.putExtra("id",mId);
                 startActivity(intent);
-                //
             }
         });
 
@@ -92,6 +97,12 @@ public class MainActivity extends AppCompatActivity {
         //Get New Items or update old ones
         RecyclerView rV = findViewById(R.id.recyclerView);
         rV.getAdapter().notifyDataSetChanged();
+    }
+
+    private void createNotificationChannel(){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            CharSequence name;
+        }
     }
 
 
