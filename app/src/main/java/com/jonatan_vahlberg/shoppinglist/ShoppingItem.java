@@ -12,7 +12,7 @@ public class ShoppingItem extends RealmObject {
     private String image;
     private String amountType;
     private boolean  checked = false;
-
+    private boolean toBeDeleted = false;
     @LinkingObjects("listOfItems")
     private final RealmResults<ShoppingList> itemParents = null;
 
@@ -46,6 +46,10 @@ public class ShoppingItem extends RealmObject {
     public boolean isChecked() { return checked; }
 
     public void setChecked(boolean checked) { this.checked = checked; }
+
+    public boolean isToBeDeleted(){return toBeDeleted;};
+
+    public void setToBeDeleted(Boolean toBeDeleted) {this.toBeDeleted = toBeDeleted;}
 
     public RealmResults<ShoppingList> getItemParents(){
         return itemParents;

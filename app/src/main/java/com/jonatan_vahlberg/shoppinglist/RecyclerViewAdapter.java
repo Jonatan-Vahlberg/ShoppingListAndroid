@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -41,7 +42,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder viewHolder, int i) {
-
+        if(mList.get(i).isToBeDeleted()){
+            viewHolder.itemView.setVisibility(View.GONE);
+            viewHolder.itemView.setLayoutParams(new RecyclerView.LayoutParams(0, 0));
+            return;
+        }
+        else{
+            viewHolder.itemView.setVisibility(View.VISIBLE);
+            viewHolder.itemView.setLayoutParams(new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        }
         Glide.with(mContext)
                 .asBitmap()
                 .load(mList.get(i).getImage())
@@ -97,20 +106,47 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return mList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public void itemToBeDeleted (int position) {
 
+        realm.beginTransaction();
+        mList.get(position).setToBeDeleted(true);
+        realm.commitTransaction();
+        notifyDataSetChanged();
+        //notifyItemRemoved(position);
+    }
+
+    public void restoreItem(int position) {
+        realm = Realm.getDefaultInstance();
+        realm.beginTransaction();
+        mList.get(position).setToBeDeleted(false);
+        realm.commitTransaction();
+        notifyDataSetChanged();
+    }
+
+    public void willDeleteItem(int position){
+        if(!(mList.get(position).isToBeDeleted())) return;;
+        realm = Realm.getDefaultInstance();
+        realm.beginTransaction();
+        mList.deleteFromRealm(position);
+        realm.commitTransaction();
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        FrameLayout parentLayout;
         CircleImageView image;
         TextView name;
         Button check;
-        RelativeLayout relativeLayout;
+        RelativeLayout foreground, background;
         TextView amount;
 
         public ViewHolder(View itemView){
             super(itemView);
+            this.parentLayout = itemView.findViewById(R.id.parent_layout);
             this.image = itemView.findViewById(R.id.image);
             this.name = itemView.findViewById(R.id.name);
             this.check = itemView.findViewById(R.id.check);
-            this.relativeLayout = itemView.findViewById(R.id.parent_layout);
+            this.foreground = itemView.findViewById(R.id.foreground);
+            this.background = itemView.findViewById(R.id.background);
             this.amount = itemView.findViewById(R.id.amount);
 
         }
