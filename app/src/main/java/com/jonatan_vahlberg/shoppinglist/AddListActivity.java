@@ -29,7 +29,7 @@ public class AddListActivity extends AppCompatActivity {
     private DatePicker datePicker;
     private String  mDateString;
     private long id;
-    private long newId = UUID.randomUUID().getMostSignificantBits();
+    private int key;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +74,7 @@ public class AddListActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (nameText.getText().toString().equals("")){
-                    Toast.makeText(AddListActivity.this,"Fill in Name Field",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddListActivity.this,getResources().getText(R.string.toast_item_not_filled),Toast.LENGTH_SHORT).show();
                     return;
                 }
                 getDateString();
@@ -82,10 +82,6 @@ public class AddListActivity extends AppCompatActivity {
                     Long id = getIntent().getLongExtra("Update",0);
                     updateRealmObject(id);
                 }
-                else{
-                    save_into_Realm();
-                }
-                setScheduledReminder(false,datePicker.getDayOfMonth(),datePicker.getMonth(),datePicker.getYear());
                 finish();
             }
 
@@ -112,7 +108,7 @@ public class AddListActivity extends AppCompatActivity {
         });
     }
 
-    private void setScheduledReminder(boolean update,int day, int month, int year) {
+    private void setScheduledReminder(boolean update,int day, int month, int year,int key) {
         Calendar c = Calendar.getInstance();
         c.set(Calendar.YEAR,year);
         c.set(Calendar.MONTH,month);
@@ -121,31 +117,22 @@ public class AddListActivity extends AppCompatActivity {
         c.set(Calendar.MINUTE,0);
         c.set(Calendar.SECOND,0);
 
-        int longKey = 0;
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
-            String s = "";
-            if(update){
-                s = Long.toString(id);
-            }
-            else{
-                s = Long.toString(newId);
-            }
-            String firstSevenDigits = s.substring(0,7);
-            longKey = Integer.parseInt(firstSevenDigits);
-        }
-        else{
-            longKey = (int) newId;
-        }
 
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(this, AlertReceiver.class);
         intent.putExtra("title",nameText.getText().toString());
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this,longKey,intent,0);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this,key,intent,0);
 
         if(c.before(Calendar.getInstance())){
             c.add(Calendar.DATE,1);
         }
+        if(update){
+            alarmManager.cancel(pendingIntent);
+        }
+
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(),pendingIntent);
+
+
 
     }
 
@@ -153,42 +140,25 @@ public class AddListActivity extends AppCompatActivity {
         realm.executeTransactionAsync(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
-              ShoppingList shoppingList = realm.where(ShoppingList.class).equalTo("id",id).findFirst();
-                if(shoppingList == null){
-                    ShoppingList newShoppingList = realm.createObject(ShoppingList.class,id);
+                ShoppingList shoppingList = realm.where(ShoppingList.class).equalTo("id", id).findFirst();
+                if (shoppingList == null) {
+                    key = shoppingList.getAlarmId();
+                    shoppingList.setAlarmId(key);
+                    ShoppingList newShoppingList = realm.createObject(ShoppingList.class, id);
                     newShoppingList.setName(nameText.getText().toString());
                     newShoppingList.setDate(mDateString);
                     newShoppingList.setListOfItems(new RealmList<ShoppingItem>());
-                }
-                else{
+                } else {
+                    shoppingList.setAlarmId(Integer.parseInt(("" + shoppingList.getId()).substring(0, 8)));
                     shoppingList.setName(nameText.getText().toString());
                     shoppingList.setDate(mDateString);
                 }
             }
 
-        });
-    }
-
-    private void save_into_Realm() {
-        realm.executeTransactionAsync(new Realm.Transaction() {
-            @Override
-            public void execute(Realm bgRealm) {
-                ShoppingList shoppingList = bgRealm.createObject(ShoppingList.class,newId);
-                shoppingList.setName(nameText.getText().toString());
-                shoppingList.setDate(mDateString);
-                shoppingList.setListOfItems(new RealmList<ShoppingItem>());
-
-            }
         }, new Realm.Transaction.OnSuccess() {
             @Override
             public void onSuccess() {
-                Log.d("onChange", "onSuccess: ");
-
-            }
-        }, new Realm.Transaction.OnError() {
-            @Override
-            public void onError(Throwable error) {
-                Log.d("onChange", "onError: "+ error);
+                setScheduledReminder(true,datePicker.getDayOfMonth(),datePicker.getMonth(),datePicker.getYear(),key);
             }
         });
     }

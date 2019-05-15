@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/toolbar_list"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/app_blue"
+    android:elevation="40dp"
+    >
+
+    <RelativeLayout
+        android:id="@+id/toolbar_list_relative"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/toolbar_list_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/shopping_lists_title"
+            android:textSize="35sp"
+            android:layout_marginTop="25dp"
+            android:textColor="#fff"/>
+
+        <LinearLayout
+            android:id="@+id/toolbar_linea"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_below="@+id/toolbar_list_text"
+            android:orientation="horizontal"
+
+            >
+            <EditText
+                android:id="@+id/list_name_edit"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.0"
+                android:hint="@string/shopping_list_hint"
+                android:textColor="#fff"
+                android:layout_marginRight="10dp"
+                android:imeOptions="actionDone"
+                />
+            <ImageButton
+                android:id="@+id/list_date_btn"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.2"
+                android:background="#00000000"
+                android:src="@drawable/alarm_black"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:textColor="#fff"
+                android:textSize="30sp"
+                android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp"
+                android:padding="5dp"
+                />
+            <Button
+                android:id="@+id/list_btn_add"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.3"
+                android:background="#00000000"
+                android:text="@string/add"
+                android:textColor="#fff"
+                android:textSize="30sp"
+
+                />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</Toolbar>

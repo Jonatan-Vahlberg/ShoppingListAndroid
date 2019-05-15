@@ -24,29 +24,57 @@ public class RecyclerItemTouchHelper extends ItemTouchHelper.SimpleCallback {
     public void onSelectedChanged(@Nullable RecyclerView.ViewHolder viewHolder, int actionState) {
         //super.onSelectedChanged(viewHolder, actionState);
         if(viewHolder != null){
-            final View foregroundView = ((RecyclerViewAdapter.ViewHolder) viewHolder).foreground;
-            getDefaultUIUtil().onSelected(foregroundView);
+            if(viewHolder instanceof  RecyclerViewAdapter.ViewHolder){
+                final View foregroundView = ((RecyclerViewAdapter.ViewHolder) viewHolder).foreground;
+                getDefaultUIUtil().onSelected(foregroundView);
+            }
+            else if(viewHolder instanceof  RecyclerViewListAdapter.ListViewHolder){
+                final View foregroundVIew = ((RecyclerViewListAdapter.ListViewHolder)viewHolder).foreground;
+                getDefaultUIUtil().onSelected(foregroundVIew);
+            }
+
         }
     }
 
     @Override
     public void onChildDrawOver(@NonNull Canvas c, @NonNull RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
             //super.onChildDrawOver(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+        if(viewHolder instanceof  RecyclerViewAdapter.ViewHolder){
             final View foregroundView = ((RecyclerViewAdapter.ViewHolder) viewHolder).foreground;
             getDefaultUIUtil().onDrawOver(c, recyclerView, foregroundView, dX, dY, actionState, isCurrentlyActive);
+        }
+        else if(viewHolder instanceof  RecyclerViewListAdapter.ListViewHolder){
+            final View foregroundView = ((RecyclerViewListAdapter.ListViewHolder)viewHolder).foreground;
+            getDefaultUIUtil().onDrawOver(c, recyclerView, foregroundView, dX, dY, actionState, isCurrentlyActive);
+        }
+
     }
 
     @Override
     public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
         //super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
-        final View foregroundView = ((RecyclerViewAdapter.ViewHolder) viewHolder).foreground;
-        getDefaultUIUtil().onDraw(c, recyclerView, foregroundView, dX, dY, actionState, isCurrentlyActive);
+        if(viewHolder instanceof  RecyclerViewAdapter.ViewHolder){
+            final View foregroundView = ((RecyclerViewAdapter.ViewHolder) viewHolder).foreground;
+            getDefaultUIUtil().onDraw(c, recyclerView, foregroundView, dX, dY, actionState, isCurrentlyActive);
+        }
+        else if(viewHolder instanceof  RecyclerViewListAdapter.ListViewHolder){
+            final View foregroundView = ((RecyclerViewListAdapter.ListViewHolder)viewHolder).foreground;
+            getDefaultUIUtil().onDraw(c, recyclerView, foregroundView, dX, dY, actionState, isCurrentlyActive);
+        }
+
     }
 
     @Override
     public void clearView(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
-        final View foregroundView = ((RecyclerViewAdapter.ViewHolder) viewHolder).foreground;
-        getDefaultUIUtil().clearView(foregroundView);
+        if(viewHolder instanceof  RecyclerViewAdapter.ViewHolder){
+            final View foregroundView = ((RecyclerViewAdapter.ViewHolder) viewHolder).foreground;
+            getDefaultUIUtil().clearView(foregroundView);
+        }
+        else if(viewHolder instanceof  RecyclerViewListAdapter.ListViewHolder){
+            final View foregroundView = ((RecyclerViewListAdapter.ListViewHolder)viewHolder).foreground;
+            getDefaultUIUtil().clearView(foregroundView);
+        }
+
     }
 
     @Override

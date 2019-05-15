@@ -12,6 +12,8 @@ public class ShoppingList extends RealmObject {
     private String name;
     private String date = "";
     private RealmList<ShoppingItem> listOfItems;
+    private int alarmId;
+    private boolean toBeDeleted;
 
     //Getters And Setters
     public long getId() {
@@ -45,6 +47,18 @@ public class ShoppingList extends RealmObject {
     public void setListOfItems(RealmList<ShoppingItem> listOfItems) {
         this.listOfItems = listOfItems;
     }
+
+    public int getAlarmId() {
+        return alarmId;
+    }
+
+    public void setAlarmId(int alarmId) {
+        this.alarmId = alarmId;
+    }
+
+    public boolean isToBeDeleted() { return toBeDeleted; }
+
+    public void setToBeDeleted(boolean toBeDeleted) { this.toBeDeleted = toBeDeleted; }
 
     //Public Constructor used by realm
     public ShoppingList(){

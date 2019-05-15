@@ -5,20 +5,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="#fff">
 
 
 
-    <include layout="@layout/shoppingbar"
-        android:id="@+id/shoppingBar"
+    <include layout="@layout/shoppingbar_item"
+        android:id="@+id/item_shoppingBar"
         />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-
         android:layout_height="wrap_content"
-        android:layout_below="@+id/shoppingBar"
-        app:layout_constraintTop_toBottomOf="@+id/shoppingBar" />
+        android:layout_below="@+id/item_shoppingBar"
+        app:layout_constraintTop_toBottomOf="@+id/item_shoppingBar" />
 
 </RelativeLayout>

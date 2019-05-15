@@ -1,4 +1,18 @@
 <resources>
     <string name="app_name">Shopping List</string>
     <string name="message">Message</string>
+    <string name="item_hint">Item</string>
+    <string name="shopping_lists_title">Shopping Lists</string>
+    <string name="shopping_list_hint">List</string>
+    <string name="toast_item_not_filled">Unable to add item due to field being left empty</string>
+    <string name="toast_list_not_filled">Unable to add list due to title field remaining empty</string>
+    <string name="post1">Pieces </string>
+    <string name="post2" translatable="false">Kg </string>
+    <string name="post3">Grams </string>
+    <string name="post4" translatable="false">Liter </string>
+    <string name="shopping_list_title">Shopping list</string>
+    <string name="add" translatable="false">+</string>
+    <string name="removed_item">removed from list</string>
+    <string name="removed">was removed</string>
+    <string name="undo">UNDO</string>
 </resources>
