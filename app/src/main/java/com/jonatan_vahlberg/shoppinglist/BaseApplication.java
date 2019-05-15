@@ -21,7 +21,7 @@ public class BaseApplication extends Application {
         Realm.init(this);
 
         //Set Realm File Config
-        RealmConfiguration  configuration = new RealmConfiguration.Builder().name("realm_v1_0").build();
+        RealmConfiguration  configuration = new RealmConfiguration.Builder().name("realm_v1_0_5").build();
         Realm.setDefaultConfiguration(configuration);
 
 

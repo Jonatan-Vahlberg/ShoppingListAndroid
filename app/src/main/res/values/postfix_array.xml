@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="postfix">
+        <item>@string/post1</item>
+        <item>@string/post2</item>
+        <item>@string/post3</item>
+        <item>@string/post4</item>
+    </string-array>
+</resources>

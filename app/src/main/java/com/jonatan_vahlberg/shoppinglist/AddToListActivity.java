@@ -75,7 +75,7 @@ public class AddToListActivity extends AppCompatActivity {
                 ShoppingItem shoppingItem = bgRealm.createObject(ShoppingItem.class);
                 shoppingItem.setName(name);
                 shoppingItem.setAmount(amount);
-                shoppingItem.setImage(image);
+                //shoppingItem.setImage(image);
                 shoppingItem.setChecked(false);
                 shoppingItem.setAmountType(spinner.getSelectedItem().toString());
                 bgRealm.where(ShoppingList.class).equalTo("id",mId).findFirst().getListOfItems().add(shoppingItem);
