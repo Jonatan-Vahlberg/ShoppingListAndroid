@@ -1,9 +1,7 @@
 package com.jonatan_vahlberg.shoppinglist;
 
-import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Color;
-import android.os.Build;
 import android.support.design.widget.Snackbar;
 
 import android.support.v7.app.AppCompatActivity;
@@ -14,7 +12,6 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -58,7 +55,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerItemTouch
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         res = getResources();
-        //this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         setContentView(R.layout.activity_main);
         setupLayouts();
         toolbarListenerSetups();
@@ -84,18 +80,25 @@ public class MainActivity extends AppCompatActivity implements RecyclerItemTouch
     }
 
     private void setupRealm(){
+
+        //Get Realm Instance from database file
         realm = Realm.getDefaultInstance();
         if(getIntent().hasExtra("id")){
+
+            //get object list from id as extra in intent
             mId = getIntent().getLongExtra("id",0);
             mList = realm.where(ShoppingList.class).equalTo("id",mId).findFirst();
+
+            //Set title from selected list
             TextView textView = view.findViewById(R.id.item_toolbar_relative_text);
             textView.setText(mList.getName());
             mList.addChangeListener(mChangeListener);
-            Log.d("Database", mId + "");
+            //Log.d("Database", mId + "");
         }
     }
 
     private void toolbarListenerSetups() {
+        //Listeners for IME options
         itemAmount.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -124,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerItemTouch
                 return true;
             }});
 
-
+        //On click listeners for button
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -137,56 +140,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerItemTouch
 
             }
         });
-    }
-
-    private void clearFields(){
-        itemName.setText("");
-        itemName.requestFocus();
-        itemAmount.setText("");
-    }
-
-    private boolean checkDataValidity() {
-        if(itemName.getText().toString().equals("") || itemAmount.getText().toString().equals("")){
-            Toast.makeText(this,res.getText(R.string.toast_item_not_filled), Toast.LENGTH_SHORT).show();
-            return false;
-        }
-        try{
-            Integer.parseInt(itemAmount.getText().toString());
-        }catch (Exception e){
-            return false;
-        }
-        return true;
-    }
-
-    private void addNewItem(final String name, final int amount) {
-
-            realm.executeTransactionAsync(new Realm.Transaction() {
-                @Override
-                public void execute(Realm bgRealm) {
-                    ShoppingItem shoppingItem = bgRealm.createObject(ShoppingItem.class);
-                    shoppingItem.setName(name);
-                    shoppingItem.setAmount(amount);
-                    shoppingItem.setChecked(false);
-                    shoppingItem.setToBeDeleted(false);
-                    shoppingItem.setAmountType(spinner.getSelectedItem().toString());
-                    bgRealm.where(ShoppingList.class).equalTo("id",mId).findFirst().getListOfItems().add(shoppingItem);
-                }
-            }, new Realm.Transaction.OnSuccess() {
-                @Override
-                public void onSuccess() {
-                    // Transaction was a success.
-                    Log.d("Database","Item WAS ENTERED");
-                    //updateResults();
-                }
-            }, new Realm.Transaction.OnError() {
-                @Override
-                public void onError(Throwable error) {
-                    // Transaction failed and was automatically canceled.
-                    Log.d("Database","Item WAS NOT ENTERED");
-                }
-            });
-
-            clearFields();
     }
 
     private void initRecyclerView(){
@@ -214,7 +167,64 @@ public class MainActivity extends AppCompatActivity implements RecyclerItemTouch
 
     }
 
-    //When Returning To MainActivity
+
+    private void clearFields(){
+        //Simple data wipe for layouts
+        itemName.setText("");
+        itemName.requestFocus();
+        itemAmount.setText("");
+    }
+
+    private boolean checkDataValidity() {
+        //This basically checks for empty fields but with else if statements can be expanded
+        if(itemName.getText().toString().equals("") || itemAmount.getText().toString().equals("")){
+            Toast.makeText(this,res.getText(R.string.toast_item_not_filled), Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        //Makes certain that only whole numbers gets passed to list
+        try{
+            Integer.parseInt(itemAmount.getText().toString());
+        }catch (Exception e){
+            return false;
+        }
+        return true;
+    }
+
+    private void addNewItem(final String name, final int amount) {
+
+        //Async realm transaction for adding item to database which when entered triggers recycleview to reload
+        realm.executeTransactionAsync(new Realm.Transaction() {
+            @Override
+            public void execute(Realm bgRealm) {
+                ShoppingItem shoppingItem = bgRealm.createObject(ShoppingItem.class);
+                shoppingItem.setName(name);
+                shoppingItem.setAmount(amount);
+                shoppingItem.setChecked(false);
+                shoppingItem.setToBeDeleted(false);
+                shoppingItem.setAmountType(spinner.getSelectedItem().toString());
+                bgRealm.where(ShoppingList.class).equalTo("id",mId).findFirst().getListOfItems().add(shoppingItem);
+            }
+        }, new Realm.Transaction.OnSuccess() {
+            @Override
+            public void onSuccess() {
+                // Transaction was a success.
+                Log.d("Database","Item WAS ENTERED");
+                clearFields();
+                //updateResults();
+            }
+        }, new Realm.Transaction.OnError() {
+            @Override
+            public void onError(Throwable error) {
+                // Transaction failed and was automatically canceled.
+                Log.d("Database","Item WAS NOT ENTERED");
+            }
+        });
+
+
+    }
+
+
+    //When Returning To MainActivity UNUSED
     @Override
     protected void onResume() {
         super.onResume();
@@ -223,26 +233,20 @@ public class MainActivity extends AppCompatActivity implements RecyclerItemTouch
         rV.getAdapter().notifyDataSetChanged();
     }
 
-    private void createNotificationChannel(){
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-            CharSequence name;
-        }
-    }
-
-
     @Override
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction, int position) {
         if(viewHolder instanceof RecyclerViewAdapter.ViewHolder){
             ShoppingItem item = mList.getListOfItems().get(position);
             String name = item.getName();
 
-            final ShoppingItem deletedItem = item;
             final int deletedPosition = viewHolder.getAdapterPosition();
 
             adapter.itemToBeDeleted(deletedPosition);
 
+            //Warn user that item is about to be deleted give them a chance to revert
             Snackbar snackbar = Snackbar
                     .make(relativeLayout,name+" "+res.getText(R.string.removed_item), Snackbar.LENGTH_LONG);
+            //Revert item deletion
             snackbar.setAction(res.getText(R.string.undo), new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -250,6 +254,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerItemTouch
                 }
 
             });
+            //If file is not reverted within n seconds delete item from realm PERMANENT
             snackbar.addCallback(new Snackbar.Callback(){
 
                 @Override

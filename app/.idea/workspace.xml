@@ -10,30 +10,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2450af01-03fa-4abc-9183-7670525bf2ae" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/alarm.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/alarm_black.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/res/layout/spinner_custom_item.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/res/values-sv/strings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/res/values/postfix_array.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/jonatan_vahlberg/shoppinglist/AddListActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jonatan_vahlberg/shoppinglist/AddListActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/jonatan_vahlberg/shoppinglist/AddToListActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jonatan_vahlberg/shoppinglist/AddToListActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jonatan_vahlberg/shoppinglist/BaseApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jonatan_vahlberg/shoppinglist/BaseApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jonatan_vahlberg/shoppinglist/ListsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jonatan_vahlberg/shoppinglist/ListsActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jonatan_vahlberg/shoppinglist/AlertReceiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jonatan_vahlberg/shoppinglist/AlertReceiver.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/jonatan_vahlberg/shoppinglist/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jonatan_vahlberg/shoppinglist/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jonatan_vahlberg/shoppinglist/RecyclerItemTouchHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jonatan_vahlberg/shoppinglist/RecyclerItemTouchHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jonatan_vahlberg/shoppinglist/RecyclerViewAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jonatan_vahlberg/shoppinglist/RecyclerViewAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jonatan_vahlberg/shoppinglist/RecyclerViewListAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jonatan_vahlberg/shoppinglist/RecyclerViewListAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jonatan_vahlberg/shoppinglist/ShoppingItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jonatan_vahlberg/shoppinglist/ShoppingItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jonatan_vahlberg/shoppinglist/ShoppingList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jonatan_vahlberg/shoppinglist/ShoppingList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_lists.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_lists.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/recycle_view_item.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/recycle_view_item.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/recycle_view_list.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/recycle_view_list.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/values/colors.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/values/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/values/styles.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -69,33 +50,38 @@
           <provider selected="true" editor-type-id="string-resource-editor" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/jonatan_vahlberg/shoppinglist/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1301">
-              <caret line="233" column="90" selection-start-line="233" selection-start-column="90" selection-end-line="233" selection-end-column="90" />
+            <state relative-caret-position="32">
+              <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="method#onCreate#0;class#MainActivity#0" />
+                <element signature="method#setupLayouts#0;class#MainActivity#0" />
                 <element signature="method#setupRealm#0;class#MainActivity#0" />
                 <element signature="method#toolbarListenerSetups#0;class#MainActivity#0" />
-                <element signature="e#3093#3746#0" expanded="true" />
-                <element signature="e#3745#3746#0" expanded="true" />
-                <element signature="e#3793#4028#0" expanded="true" />
-                <element signature="e#4027#4028#0" expanded="true" />
-                <element signature="e#4067#4440#0" expanded="true" />
-                <element signature="e#4439#4440#0" expanded="true" />
-                <element signature="method#clearFields#0;class#MainActivity#0" />
-                <element signature="method#checkDataValidity#0;class#MainActivity#0" />
-                <element signature="e#4889#4932#0" expanded="true" />
-                <element signature="method#addNewItem#0;class#MainActivity#0" />
+                <element signature="e#3309#3962#0" expanded="true" />
+                <element signature="e#3961#3962#0" expanded="true" />
+                <element signature="e#4009#4244#0" expanded="true" />
+                <element signature="e#4243#4244#0" expanded="true" />
+                <element signature="e#4322#4695#0" expanded="true" />
+                <element signature="e#4694#4695#0" expanded="true" />
                 <element signature="method#initRecyclerView#0;class#MainActivity#0" />
                 <element signature="method#setupSwipeMethods#0;class#MainActivity#0" />
                 <element signature="method#setSpinnerValues#0;class#MainActivity#0" />
+                <element signature="method#clearFields#0;class#MainActivity#0" />
+                <element signature="method#checkDataValidity#0;class#MainActivity#0" />
+                <element signature="e#6113#6156#0" expanded="true" />
+                <element signature="method#addNewItem#0;class#MainActivity#0" />
                 <element signature="method#onResume#0;class#MainActivity#0" />
-                <element signature="method#createNotificationChannel#0;class#MainActivity#0" />
                 <element signature="method#onSwiped#0;class#MainActivity#0" />
-                <element signature="e#8465#8499#0" expanded="true" />
-                <element signature="e#8558#8584#0" expanded="true" />
+                <element signature="e#8678#8712#0" expanded="true" />
+                <element signature="e#8768#8794#0" expanded="true" />
+                <element signature="e#8796#8987#0" expanded="true" />
+                <element signature="e#8986#8987#0" expanded="true" />
+                <element signature="e#9023#9238#0" expanded="true" />
+                <element signature="e#9237#9238#0" expanded="true" />
+                <element signature="method#onPointerCaptureChanged#0;class#MainActivity#0" />
               </folding>
             </state>
           </provider>
@@ -118,20 +104,22 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/jonatan_vahlberg/shoppinglist/AddListActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="31" column="20" selection-start-line="31" selection-start-column="20" selection-end-line="31" selection-end-column="20" />
+            <state relative-caret-position="371">
+              <caret line="144" column="50" selection-start-line="144" selection-start-column="50" selection-end-line="144" selection-end-column="50" />
               <folding>
                 <element signature="method#onCreate#0;class#AddListActivity#0" />
                 <element signature="method#layoutSetup#0;class#AddListActivity#0" />
+                <element signature="e#1813#1974#0" expanded="true" />
+                <element signature="e#1973#1974#0" expanded="true" />
                 <element signature="e#2098#2150#1" />
                 <element signature="class#2213:3544" />
-                <element signature="e#2421#2475#0" expanded="true" />
+                <element signature="e#2358#2412#0" expanded="true" />
                 <element signature="method#setScheduledReminder#0;class#AddListActivity#0" />
                 <element signature="method#updateRealmObject#0;class#AddListActivity#0" />
-                <element signature="e#5199#5952#0" expanded="true" />
-                <element signature="e#5951#5952#0" expanded="true" />
-                <element signature="e#5951#6179#0" expanded="true" />
-                <element signature="e#6178#6179#0" expanded="true" />
+                <element signature="e#4534#5498#0" expanded="true" />
+                <element signature="e#5497#5498#0" expanded="true" />
+                <element signature="e#5500#5737#0" expanded="true" />
+                <element signature="e#5736#5737#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -174,6 +162,33 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/jonatan_vahlberg/shoppinglist/AddToListActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-45">
+              <caret line="28" column="6" selection-start-line="28" selection-start-column="6" selection-end-line="28" selection-end-column="6" />
+              <folding>
+                <element signature="docComment;class#AddToListActivity#0" />
+                <element signature="method#dataIsPassable#0;class#AddToListActivity#0" />
+                <element signature="method#dataIsParseable#0;class#AddToListActivity#0" />
+                <element signature="method#dataIsURL#0;class#AddToListActivity#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/jonatan_vahlberg/shoppinglist/AlertReceiver.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="224">
+              <caret line="14" column="37" lean-forward="true" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="37" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -199,14 +214,12 @@
         <option value="$PROJECT_DIR$/../build.gradle" />
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/jonatan_vahlberg/shoppinglist/AlertReceiver.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/jonatan_vahlberg/shoppinglist/NotificationHelper.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/jonatan_vahlberg/shoppinglist/RecyclerItemTouchHelper.java" />
         <option value="$PROJECT_DIR$/src/main/res/layout/recycle_view_list.xml" />
         <option value="$PROJECT_DIR$/src/main/res/values/colors.xml" />
         <option value="$PROJECT_DIR$/src/main/res/layout/recycle_view_item.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/jonatan_vahlberg/shoppinglist/RecyclerViewListAdapter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/jonatan_vahlberg/shoppinglist/AddToListActivity.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/jonatan_vahlberg/shoppinglist/ShoppingItem.java" />
         <option value="$PROJECT_DIR$/src/main/res/layout/activity_main.xml" />
         <option value="$PROJECT_DIR$/src/main/res/layout/spinner_custom_item.xml" />
@@ -221,17 +234,19 @@
         <option value="$PROJECT_DIR$/src/main/res/values/postfix_array.xml" />
         <option value="$PROJECT_DIR$/src/main/res/layout/shoppingbar_list.xml" />
         <option value="$PROJECT_DIR$/src/main/res/layout/shoppingbar_item.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/jonatan_vahlberg/shoppinglist/ListsActivity.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/jonatan_vahlberg/shoppinglist/MainActivity.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/jonatan_vahlberg/shoppinglist/AddListActivity.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/jonatan_vahlberg/shoppinglist/ListsActivity.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/jonatan_vahlberg/shoppinglist/AddToListActivity.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/jonatan_vahlberg/shoppinglist/AlertReceiver.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-10" />
-    <option name="y" value="-10" />
-    <option name="width" value="1938" />
-    <option name="height" value="1099" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="141" />
+    <option name="y" value="125" />
+    <option name="width" value="1742" />
+    <option name="height" value="981" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -242,7 +257,33 @@
       <pane id="ProjectPane" />
       <pane id="PackagesPane" />
       <pane id="Scope" />
-      <pane id="AndroidView" />
+      <pane id="AndroidView">
+        <subPane>
+          <expand>
+            <path>
+              <item name="ShoppingList" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+            </path>
+            <path>
+              <item name="ShoppingList" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="manifests" type="f94875db:AndroidManifestsGroupNode" />
+            </path>
+            <path>
+              <item name="ShoppingList" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+            </path>
+            <path>
+              <item name="ShoppingList" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="shoppinglist" type="cbb59c9e:AndroidPsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -349,11 +390,11 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1753" height="993" extended-state="6" />
+    <frame x="128" y="114" width="1577" height="888" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.4965398" weight="0.29262537" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.4965398" visible="true" weight="0.3265306" />
       <window_info id="Structure" order="2" sideWeight="0.5034602" side_tool="true" weight="0.32684365" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Build Variants" order="4" side_tool="true" />
@@ -362,35 +403,7 @@
       <window_info id="Resources Explorer" order="7" />
       <window_info id="Capture Tool" order="8" />
       <window_info anchor="bottom" id="Run" order="0" />
-      <window_info anchor="bottom" id="Logcat" order="1" weight="0.32830626" />
-      <window_info anchor="bottom" id="TODO" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.32946634" />
-      <window_info anchor="bottom" id="Terminal" order="4" weight="0.32830626" />
-      <window_info anchor="bottom" id="Event Log" order="5" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="6" weight="0.32908458" />
-      <window_info anchor="bottom" id="Build" order="7" weight="0.19605568" />
-      <window_info anchor="bottom" id="Android Profiler" order="8" />
-      <window_info anchor="bottom" id="Find" order="9" weight="0.32946634" />
-      <window_info anchor="right" id="StringPreview" />
-      <window_info anchor="right" id="Device File Explorer" order="0" side_tool="true" />
-      <window_info anchor="right" id="Capture Analysis" order="1" />
-      <window_info anchor="right" id="Gradle" order="2" />
-      <window_info anchor="right" id="Theme Preview" order="3" />
-      <window_info anchor="right" id="Preview" order="4" weight="0.2938053" />
-      <window_info anchor="right" id="Palette&#9;" order="5" />
-    </layout>
-    <layout-to-restore>
-      <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.4965398" visible="true" weight="0.29262537" />
-      <window_info id="Structure" order="2" sideWeight="0.5034602" side_tool="true" weight="0.32684365" />
-      <window_info id="Favorites" order="3" side_tool="true" />
-      <window_info id="Build Variants" order="4" side_tool="true" />
-      <window_info id="Image Layers" order="5" />
-      <window_info id="Designer" order="6" />
-      <window_info id="Resources Explorer" order="7" />
-      <window_info id="Capture Tool" order="8" />
-      <window_info anchor="bottom" id="Run" order="0" />
-      <window_info anchor="bottom" id="Logcat" order="1" visible="true" weight="0.32830626" />
+      <window_info anchor="bottom" id="Logcat" order="1" visible="true" weight="0.37384412" />
       <window_info anchor="bottom" id="TODO" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.32946634" />
       <window_info anchor="bottom" id="Terminal" order="4" weight="0.32830626" />
@@ -406,7 +419,7 @@
       <window_info anchor="right" id="Theme Preview" order="4" />
       <window_info anchor="right" id="Preview" order="5" weight="0.2938053" />
       <window_info anchor="right" id="Palette&#9;" order="6" />
-    </layout-to-restore>
+    </layout>
   </component>
   <component name="Vcs.Log.History.Properties">
     <option name="COLUMN_ORDER">
@@ -417,6 +430,18 @@
         <option value="1" />
       </list>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/jonatan_vahlberg/shoppinglist/MainActivity.java</url>
+          <line>179</line>
+          <properties />
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/local.properties">
@@ -453,16 +478,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/res/mipmap-xhdpi/app_icon.png">
       <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/jonatan_vahlberg/shoppinglist/AlertReceiver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="18" column="118" selection-start-line="18" selection-start-column="118" selection-end-line="18" selection-end-column="118" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/res/drawable-v24/ic_launcher_foreground.xml">
       <provider selected="true" editor-type-id="text-editor" />
@@ -562,18 +577,6 @@
         </state>
       </provider>
       <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/jonatan_vahlberg/shoppinglist/AddToListActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1008">
-          <caret line="77" column="18" selection-start-line="77" selection-start-column="18" selection-end-line="77" selection-end-column="18" />
-          <folding>
-            <element signature="method#dataIsPassable#0;class#AddToListActivity#0" />
-            <element signature="method#dataIsParseable#0;class#AddToListActivity#0" />
-            <element signature="method#dataIsURL#0;class#AddToListActivity#0" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/res/layout/shoppingbar.xml">
       <provider selected="true" editor-type-id="text-editor">
@@ -705,26 +708,6 @@
       </provider>
       <provider editor-type-id="android-designer2" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/jonatan_vahlberg/shoppinglist/AddListActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="31" column="20" selection-start-line="31" selection-start-column="20" selection-end-line="31" selection-end-column="20" />
-          <folding>
-            <element signature="method#onCreate#0;class#AddListActivity#0" />
-            <element signature="method#layoutSetup#0;class#AddListActivity#0" />
-            <element signature="e#2098#2150#1" />
-            <element signature="class#2213:3544" />
-            <element signature="e#2421#2475#0" expanded="true" />
-            <element signature="method#setScheduledReminder#0;class#AddListActivity#0" />
-            <element signature="method#updateRealmObject#0;class#AddListActivity#0" />
-            <element signature="e#5199#5952#0" expanded="true" />
-            <element signature="e#5951#5952#0" expanded="true" />
-            <element signature="e#5951#6179#0" expanded="true" />
-            <element signature="e#6178#6179#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/jonatan_vahlberg/shoppinglist/ListsActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="352">
@@ -754,30 +737,80 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/jonatan_vahlberg/shoppinglist/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1301">
-          <caret line="233" column="90" selection-start-line="233" selection-start-column="90" selection-end-line="233" selection-end-column="90" />
+        <state relative-caret-position="32">
+          <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="method#onCreate#0;class#MainActivity#0" />
+            <element signature="method#setupLayouts#0;class#MainActivity#0" />
             <element signature="method#setupRealm#0;class#MainActivity#0" />
             <element signature="method#toolbarListenerSetups#0;class#MainActivity#0" />
-            <element signature="e#3093#3746#0" expanded="true" />
-            <element signature="e#3745#3746#0" expanded="true" />
-            <element signature="e#3793#4028#0" expanded="true" />
-            <element signature="e#4027#4028#0" expanded="true" />
-            <element signature="e#4067#4440#0" expanded="true" />
-            <element signature="e#4439#4440#0" expanded="true" />
-            <element signature="method#clearFields#0;class#MainActivity#0" />
-            <element signature="method#checkDataValidity#0;class#MainActivity#0" />
-            <element signature="e#4889#4932#0" expanded="true" />
-            <element signature="method#addNewItem#0;class#MainActivity#0" />
+            <element signature="e#3309#3962#0" expanded="true" />
+            <element signature="e#3961#3962#0" expanded="true" />
+            <element signature="e#4009#4244#0" expanded="true" />
+            <element signature="e#4243#4244#0" expanded="true" />
+            <element signature="e#4322#4695#0" expanded="true" />
+            <element signature="e#4694#4695#0" expanded="true" />
             <element signature="method#initRecyclerView#0;class#MainActivity#0" />
             <element signature="method#setupSwipeMethods#0;class#MainActivity#0" />
             <element signature="method#setSpinnerValues#0;class#MainActivity#0" />
+            <element signature="method#clearFields#0;class#MainActivity#0" />
+            <element signature="method#checkDataValidity#0;class#MainActivity#0" />
+            <element signature="e#6113#6156#0" expanded="true" />
+            <element signature="method#addNewItem#0;class#MainActivity#0" />
             <element signature="method#onResume#0;class#MainActivity#0" />
-            <element signature="method#createNotificationChannel#0;class#MainActivity#0" />
             <element signature="method#onSwiped#0;class#MainActivity#0" />
-            <element signature="e#8465#8499#0" expanded="true" />
-            <element signature="e#8558#8584#0" expanded="true" />
+            <element signature="e#8678#8712#0" expanded="true" />
+            <element signature="e#8768#8794#0" expanded="true" />
+            <element signature="e#8796#8987#0" expanded="true" />
+            <element signature="e#8986#8987#0" expanded="true" />
+            <element signature="e#9023#9238#0" expanded="true" />
+            <element signature="e#9237#9238#0" expanded="true" />
+            <element signature="method#onPointerCaptureChanged#0;class#MainActivity#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/jonatan_vahlberg/shoppinglist/AddListActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="371">
+          <caret line="144" column="50" selection-start-line="144" selection-start-column="50" selection-end-line="144" selection-end-column="50" />
+          <folding>
+            <element signature="method#onCreate#0;class#AddListActivity#0" />
+            <element signature="method#layoutSetup#0;class#AddListActivity#0" />
+            <element signature="e#1813#1974#0" expanded="true" />
+            <element signature="e#1973#1974#0" expanded="true" />
+            <element signature="e#2098#2150#1" />
+            <element signature="class#2213:3544" />
+            <element signature="e#2358#2412#0" expanded="true" />
+            <element signature="method#setScheduledReminder#0;class#AddListActivity#0" />
+            <element signature="method#updateRealmObject#0;class#AddListActivity#0" />
+            <element signature="e#4534#5498#0" expanded="true" />
+            <element signature="e#5497#5498#0" expanded="true" />
+            <element signature="e#5500#5737#0" expanded="true" />
+            <element signature="e#5736#5737#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/jonatan_vahlberg/shoppinglist/AddToListActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-45">
+          <caret line="28" column="6" selection-start-line="28" selection-start-column="6" selection-end-line="28" selection-end-column="6" />
+          <folding>
+            <element signature="docComment;class#AddToListActivity#0" />
+            <element signature="method#dataIsPassable#0;class#AddToListActivity#0" />
+            <element signature="method#dataIsParseable#0;class#AddToListActivity#0" />
+            <element signature="method#dataIsURL#0;class#AddToListActivity#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/jonatan_vahlberg/shoppinglist/AlertReceiver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="14" column="37" lean-forward="true" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

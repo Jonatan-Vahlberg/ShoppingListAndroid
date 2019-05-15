@@ -7,6 +7,7 @@ import android.support.v4.app.NotificationCompat;
 
 public class AlertReceiver extends BroadcastReceiver {
     @Override
+    //Used by alarm manager to create a Notification displayed
     public void onReceive(Context context, Intent intent) {
         String extra = "Shopping List";
         if(intent.hasExtra("title")){
