@@ -10,8 +10,8 @@ import io.realm.RealmConfiguration;
 
 public class BaseApplication extends Application {
 
-    public static final String CHANNEL_1_ID = "channel1";
-    public static final String CHANNEL_2_ID = "channel2";
+    //public static final String CHANNEL_1_ID = "channel1";
+    //public static final String CHANNEL_2_ID = "channel2";
 
     @Override
     public void onCreate() {

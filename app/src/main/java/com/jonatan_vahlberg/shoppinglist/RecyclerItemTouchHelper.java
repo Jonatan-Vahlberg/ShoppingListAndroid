@@ -7,13 +7,18 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 
+/*
+* Extends Simple Callback class which lets the Recycleview handle complex touches on static views
+* */
 public class RecyclerItemTouchHelper extends ItemTouchHelper.SimpleCallback {
     private RecyclerItemTouchHelperListener listener;
 
+    //Constructor
     public RecyclerItemTouchHelper(int dragDirs, int swipeDirs, RecyclerItemTouchHelperListener listener){
         super(dragDirs,swipeDirs);
         this.listener = listener;
     }
+
 
     @Override
     public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder viewHolder1) {
@@ -22,8 +27,11 @@ public class RecyclerItemTouchHelper extends ItemTouchHelper.SimpleCallback {
 
     @Override
     public void onSelectedChanged(@Nullable RecyclerView.ViewHolder viewHolder, int actionState) {
+
         //super.onSelectedChanged(viewHolder, actionState);
+        //Check if viewholder exsists
         if(viewHolder != null){
+            //Is viewholder one of two accepted types
             if(viewHolder instanceof  RecyclerViewAdapter.ViewHolder){
                 final View foregroundView = ((RecyclerViewAdapter.ViewHolder) viewHolder).foreground;
                 getDefaultUIUtil().onSelected(foregroundView);
@@ -36,9 +44,11 @@ public class RecyclerItemTouchHelper extends ItemTouchHelper.SimpleCallback {
         }
     }
 
+    //This is necessary code for swipe-able cells to draw over background layer
     @Override
     public void onChildDrawOver(@NonNull Canvas c, @NonNull RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
             //super.onChildDrawOver(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+
         if(viewHolder instanceof  RecyclerViewAdapter.ViewHolder){
             final View foregroundView = ((RecyclerViewAdapter.ViewHolder) viewHolder).foreground;
             getDefaultUIUtil().onDrawOver(c, recyclerView, foregroundView, dX, dY, actionState, isCurrentlyActive);
@@ -79,6 +89,7 @@ public class RecyclerItemTouchHelper extends ItemTouchHelper.SimpleCallback {
 
     @Override
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+        //Call for implemented Interface to check swipe-status
         listener.onSwiped(viewHolder, direction, viewHolder.getAdapterPosition());
     }
 

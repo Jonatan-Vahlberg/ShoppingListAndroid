@@ -15,4 +15,6 @@
     <string name="removed_item">removed from list</string>
     <string name="removed">was removed</string>
     <string name="undo">UNDO</string>
+    <string name="notification_title">Shopping List Reminder</string>
+    <string name="notification_message">Check out your Shopping List</string>
 </resources>

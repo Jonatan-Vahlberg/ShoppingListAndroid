@@ -13,4 +13,6 @@
     <string name="removed_item">Raderad från listan</string>
     <string name="removed">vart raderad</string>
     <string name="undo">Lägg Tillbaks</string>
+    <string name="notification_title">Shoppings Lista Påminnelse</string>
+    <string name="notification_message">Kolla in din lista.</string>
 </resources>

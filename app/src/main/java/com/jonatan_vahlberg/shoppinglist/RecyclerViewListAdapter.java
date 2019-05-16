@@ -36,8 +36,10 @@ public class RecyclerViewListAdapter extends RecyclerView.Adapter<RecyclerViewLi
         return viewHolder;
     }
 
+    //Bind data to Viewholder
     @Override
     public void onBindViewHolder(@NonNull ListViewHolder listViewHolder, int i) {
+
         if(mList.get(i).isToBeDeleted()){
             listViewHolder.itemView.setVisibility(View.GONE);
             listViewHolder.itemView.setLayoutParams(new RecyclerView.LayoutParams(0, 0));
@@ -47,6 +49,7 @@ public class RecyclerViewListAdapter extends RecyclerView.Adapter<RecyclerViewLi
             listViewHolder.itemView.setVisibility(View.VISIBLE);
             listViewHolder.itemView.setLayoutParams(new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         }
+
         listViewHolder.title.setText(mList.get(i).getName());
         listViewHolder.date.setText(mList.get(i).getDate());
         final int index = i;
@@ -78,6 +81,7 @@ public class RecyclerViewListAdapter extends RecyclerView.Adapter<RecyclerViewLi
         return mList.size();
     }
 
+    //same as RecylerViewAdapter
     public void itemToBeDeleted (int position) {
 
         realm.beginTransaction();
