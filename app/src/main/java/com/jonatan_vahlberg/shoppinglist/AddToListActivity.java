@@ -13,7 +13,12 @@ import android.widget.Toast;
 import java.net.URL;
 
 import io.realm.Realm;
-/**Activity used for adding new shoppingItem to Realm*/
+/**Activity used for adding new shoppingItem to Realm
+ * ********************************************************
+ * UNUSED AND WILL BE DELETED IN NEXT FEATURE AFTER TESTING
+ * ********************************************************
+ * */
+
 public class AddToListActivity extends AppCompatActivity {
 
     //Private Properties

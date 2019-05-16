@@ -12,6 +12,8 @@ public class ShoppingItem extends RealmObject {
     private String amountType;
     private boolean  checked = false;
     private boolean toBeDeleted = false;
+
+    //Parent
     @LinkingObjects("listOfItems")
     private final RealmResults<ShoppingList> itemParents = null;
 

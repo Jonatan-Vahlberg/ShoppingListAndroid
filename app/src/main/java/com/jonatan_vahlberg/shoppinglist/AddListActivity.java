@@ -22,6 +22,12 @@ import io.realm.Realm;
 import io.realm.RealmList;
 import io.realm.RealmResults;
 
+/*MOSTLY UNUSED
+*
+* This activity contains one usable method for now
+* might be removed in future update
+* */
+
 public class AddListActivity extends AppCompatActivity {
 
     private Realm realm;
@@ -137,6 +143,7 @@ public class AddListActivity extends AppCompatActivity {
     }
 
     private void updateRealmObject(final Long id) {
+        //Update object in accordance with realm library
         realm.executeTransactionAsync(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
@@ -158,6 +165,7 @@ public class AddListActivity extends AppCompatActivity {
         }, new Realm.Transaction.OnSuccess() {
             @Override
             public void onSuccess() {
+                //if updated with date send alarm
                 setScheduledReminder(true,datePicker.getDayOfMonth(),datePicker.getMonth(),datePicker.getYear(),key);
             }
         });
