@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Shopping Lista</string>
+    <string name="item_hint">Vara</string>
+    <string name="message">Medelande</string>
+    <string name="shopping_list_hint">Lista</string>
+    <string name="shopping_lists_title">Shopping Listor</string>
+    <string name="toast_item_not_filled">Kan inte lägga till vara då alla fällt inte är ifyllda</string>
+    <string name="toast_list_not_filled">Kan inte lägga till lista då title fälltet inte är ifyllt</string>
+    <string name="post1">St</string>
+    <string name="post3">Gramm</string>
+    <string name="shopping_list_title">Shopping Lista</string>
+    <string name="removed_item">Raderad från listan</string>
+    <string name="removed">vart raderad</string>
+    <string name="undo">Lägg Tillbaks</string>
+    <string name="notification_title">Shoppings Lista Påminnelse</string>
+    <string name="notification_message">Kolla in din lista.</string>
+</resources>

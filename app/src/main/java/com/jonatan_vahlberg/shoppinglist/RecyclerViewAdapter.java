@@ -2,12 +2,16 @@ package com.jonatan_vahlberg.shoppinglist;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.support.annotation.NonNull;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -24,16 +28,18 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private RealmList<ShoppingItem> mList;
     private Realm realm;
 
+    //constructor
     public RecyclerViewAdapter(Context context, RealmList<ShoppingItem> list){
+        //Get realm Object from realm
         mContext = context;
         this.mList = list;
         realm = Realm.getDefaultInstance();
-        //this.mList = realm.where(ShoppingItem.class).findAll();
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        //Create Recylerview cell
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recycle_view_item,viewGroup,false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
@@ -41,54 +47,42 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder viewHolder, int i) {
-
-        Glide.with(mContext)
-                .asBitmap()
-                .load(mList.get(i).getImage())
-                .into(viewHolder.image);
-        viewHolder.name.setText(mList.get(i).getName());
-        if (mList.get(i).isChecked()){
-
-            viewHolder.check.setText("✔️");
-            viewHolder.check.setBackgroundColor(Color.parseColor("#9fd7fb"));
+        //Bind data to recycler view cell
+        final ShoppingItem item = mList.get(i);
+        //While in the process of deletion make row invisible and removed
+        if(mList.get(i).isToBeDeleted()){
+            viewHolder.itemView.setVisibility(View.GONE);
+            viewHolder.itemView.setLayoutParams(new RecyclerView.LayoutParams(0, 0));
+            return;
         }
+        //If item has been reverted from deletion show it again
         else{
-            viewHolder.check.setText("️❌");
-            viewHolder.check.setBackgroundColor(Color.WHITE);
+            viewHolder.itemView.setVisibility(View.VISIBLE);
+            viewHolder.itemView.setLayoutParams(new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         }
 
 
+        //BINDING DATA
+        viewHolder.name.setText(mList.get(i).getName());
+        setLayout(viewHolder,i);
         final int index = i;
-        viewHolder.check.setOnClickListener(new View.OnClickListener() {
+
+        //On click / check for item
+        viewHolder.foreground.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Button button = (Button) v;
-                realm.beginTransaction();
-                if(mList.get(index).isChecked()){
 
-                    mList.get(index).setChecked(false);
-                    button.setText("️❌");
-                    button.setBackgroundColor(Color.WHITE);
-                }
-                else{
-                    mList.get(index).setChecked(true);
-                    button.setText("✔️");
-                    button.setBackgroundColor(Color.parseColor("#9fd7fb"));
-                }
-                realm.commitTransaction();
-            }
-        });
-        viewHolder.check.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
+                //Realm sync transaction update value
                 realm = Realm.getDefaultInstance();
-
                 realm.beginTransaction();
-                mList.deleteFromRealm(index);
+                mList.get(index).setChecked(!(mList.get(index).isChecked()));
+                setLayout(viewHolder,index);
                 realm.commitTransaction();
-                return true;
+
+
             }
         });
+
         viewHolder.amount.setText(mList.get(i).getAmount()+mList.get(i).getAmountType());
     }
 
@@ -97,22 +91,60 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return mList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public void itemToBeDeleted (int position) {
+        //Realm transaction for updating toBeDeleted
+        realm.beginTransaction();
+        mList.get(position).setToBeDeleted(true);
+        realm.commitTransaction();
+        notifyDataSetChanged();
+    }
 
-        CircleImageView image;
+    public void restoreItem(int position) {
+        //Realm sync transaction for updating item to be restored
+        realm = Realm.getDefaultInstance();
+        realm.beginTransaction();
+        mList.get(position).setToBeDeleted(false);
+        realm.commitTransaction();
+        notifyDataSetChanged();
+    }
+
+    public void willDeleteItem(int position){
+        //if item is not still to be deleted
+        if(!(mList.get(position).isToBeDeleted())) return;;
+        //else Permanently remove item from realm NOT REVERSIBLE
+        realm = Realm.getDefaultInstance();
+        realm.beginTransaction();
+        mList.deleteFromRealm(position);
+        realm.commitTransaction();
+    }
+
+    public void setLayout(ViewHolder holder, int  index){
+        //Set layout based on item checked status
+        if((!mList.get(index).isChecked())){
+            holder.topForeground.setBackgroundColor(Color.WHITE);
+        }
+        else{
+            holder.topForeground.setBackgroundColor(mContext.getResources().getColor(R.color.lightGray));
+
+        }
+    }
+
+
+    //Viewholder used for Adapter Creation
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        FrameLayout parentLayout;
         TextView name;
-        Button check;
-        RelativeLayout relativeLayout;
+        RelativeLayout foreground, background, topForeground;
         TextView amount;
 
         public ViewHolder(View itemView){
             super(itemView);
-            this.image = itemView.findViewById(R.id.image);
+            this.parentLayout = itemView.findViewById(R.id.parent_layout);
             this.name = itemView.findViewById(R.id.name);
-            this.check = itemView.findViewById(R.id.check);
-            this.relativeLayout = itemView.findViewById(R.id.parent_layout);
+            this.foreground = itemView.findViewById(R.id.foreground);
+            this.topForeground = itemView.findViewById(R.id.top_foreground);
+            this.background = itemView.findViewById(R.id.background);
             this.amount = itemView.findViewById(R.id.amount);
-
         }
     }
 }

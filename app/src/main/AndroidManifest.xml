@@ -22,6 +22,10 @@
         </activity>
         <activity android:name=".AddToListActivity" />
         <activity android:name=".MainActivity"></activity>
+
+        <receiver android:name=".AlertReceiver"/>
     </application>
+
+
 
 </manifest>

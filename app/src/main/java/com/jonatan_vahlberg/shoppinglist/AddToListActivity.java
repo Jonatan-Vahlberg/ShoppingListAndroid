@@ -13,7 +13,12 @@ import android.widget.Toast;
 import java.net.URL;
 
 import io.realm.Realm;
-/**Activity used for adding new shoppingItem to Realm*/
+/**Activity used for adding new shoppingItem to Realm
+ * ********************************************************
+ * UNUSED AND WILL BE DELETED IN NEXT FEATURE AFTER TESTING
+ * ********************************************************
+ * */
+
 public class AddToListActivity extends AppCompatActivity {
 
     //Private Properties
@@ -75,7 +80,7 @@ public class AddToListActivity extends AppCompatActivity {
                 ShoppingItem shoppingItem = bgRealm.createObject(ShoppingItem.class);
                 shoppingItem.setName(name);
                 shoppingItem.setAmount(amount);
-                shoppingItem.setImage(image);
+                //shoppingItem.setImage(image);
                 shoppingItem.setChecked(false);
                 shoppingItem.setAmountType(spinner.getSelectedItem().toString());
                 bgRealm.where(ShoppingList.class).equalTo("id",mId).findFirst().getListOfItems().add(shoppingItem);

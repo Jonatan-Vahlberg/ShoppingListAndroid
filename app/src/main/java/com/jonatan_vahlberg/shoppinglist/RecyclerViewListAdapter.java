@@ -8,7 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import io.realm.Realm;
@@ -34,8 +36,20 @@ public class RecyclerViewListAdapter extends RecyclerView.Adapter<RecyclerViewLi
         return viewHolder;
     }
 
+    //Bind data to Viewholder
     @Override
     public void onBindViewHolder(@NonNull ListViewHolder listViewHolder, int i) {
+
+        if(mList.get(i).isToBeDeleted()){
+            listViewHolder.itemView.setVisibility(View.GONE);
+            listViewHolder.itemView.setLayoutParams(new RecyclerView.LayoutParams(0, 0));
+            return;
+        }
+        else{
+            listViewHolder.itemView.setVisibility(View.VISIBLE);
+            listViewHolder.itemView.setLayoutParams(new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        }
+
         listViewHolder.title.setText(mList.get(i).getName());
         listViewHolder.date.setText(mList.get(i).getDate());
         final int index = i;
@@ -50,17 +64,7 @@ public class RecyclerViewListAdapter extends RecyclerView.Adapter<RecyclerViewLi
 
             }
         });
-        listViewHolder.delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                realm = Realm.getDefaultInstance();
-
-                realm.beginTransaction();
-                mList.deleteFromRealm(index);
-                realm.commitTransaction();
-            }
-        });
-        listViewHolder.relativeLayout.setOnClickListener(new View.OnClickListener() {
+        listViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(),MainActivity.class);
@@ -77,12 +81,39 @@ public class RecyclerViewListAdapter extends RecyclerView.Adapter<RecyclerViewLi
         return mList.size();
     }
 
+    //same as RecylerViewAdapter
+    public void itemToBeDeleted (int position) {
+
+        realm.beginTransaction();
+        mList.get(position).setToBeDeleted(true);
+        realm.commitTransaction();
+        notifyDataSetChanged();
+        //notifyItemRemoved(position);
+    }
+
+    public void restoreItem(int position) {
+        realm = Realm.getDefaultInstance();
+        realm.beginTransaction();
+        mList.get(position).setToBeDeleted(false);
+        realm.commitTransaction();
+        notifyDataSetChanged();
+    }
+
+    public void willDeleteItem(int position){
+        if(!(mList.get(position).isToBeDeleted())) return;
+        realm = Realm.getDefaultInstance();
+        realm.beginTransaction();
+        mList.deleteFromRealm(position);
+        realm.commitTransaction();
+    }
+
 
     public class ListViewHolder extends RecyclerView.ViewHolder {
 
         TextView title, date;
-        Button edit,delete;
-        LinearLayout relativeLayout;
+        ImageButton edit;
+        LinearLayout foreground;
+        RelativeLayout background;
 
         public ListViewHolder(View itemView){
             super(itemView);
@@ -90,8 +121,8 @@ public class RecyclerViewListAdapter extends RecyclerView.Adapter<RecyclerViewLi
             this.title = itemView.findViewById(R.id.list_title);
             this.date = itemView.findViewById(R.id.list_date);
             this.edit = itemView.findViewById(R.id.list_edit);
-            this.delete = itemView.findViewById(R.id.list_delete);
-            this.relativeLayout = itemView.findViewById(R.id.list_parent_layout);
+            this.foreground = itemView.findViewById(R.id.foreground);
+            this.background = itemView.findViewById(R.id.background);
 
         }
     }

@@ -4,9 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ListsActivity">
+    tools:context=".ListsActivity"
+    android:background="#fff"
+    android:id="@+id/relative_lists_layout">
 
-    <include layout="@layout/shoppingbar"
+    <include layout="@layout/shoppingbar_list"
         android:id="@+id/shoppingBar">
     </include>
     <android.support.v7.widget.RecyclerView
